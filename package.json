@@ -1,0 +1,11 @@
+{
+  "name": "expense-capture",
+  "version": "1.0.0",
+  "description": "expense capture prototye",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wilfried Akpe",
+  "license": "ISC"
+}

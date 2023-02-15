@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data</title>
+    <style>
+      .box {
+        height: 400px;
+        width: 300px;
+        margin: auto;
+        background-color: red;
+        transition: height .1s ease-in;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+        let startup = 0
+        let swipedown = 0
+      let box = document.querySelector('.box')
+      box.addEventListener('touchmove', e=>{
+          // console.log(e, 'end')
+        //   console.log(e.touches, 'originals')
+          let lengthY = e.touches[0].clientY
+        //   let startingPoint = 
+          console.log(lengthY)
+        
+          if(lengthY >= 100 ){
+            e.target.style.height = '80vh'
+             console.log(startup, 'startup')
+        }
+        if(startup > lengthY) {
+            e.target.style.height = '50vh'
+        }
+        // if()
+        //   lengthY >= 100 ? console.log('theree') : console.log('not yet')
+      })
+      box.addEventListener('touchstart' , e=> {
+        //   console.log(e, 'start')
+          startup = e.touches[0].clientY
+      })
+    </script>
+  </body>
+</html>

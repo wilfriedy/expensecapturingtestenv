@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,900;1,100;1,300;1,400;1,500;1,600;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Courier Prime", monospace;
+}
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.modal-loader {
+  background-color: rgba(19, 23, 44, 0.768627451);
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+}
+
+.modal-btn {
+  height: 40px;
+  width: 40px;
+  background: #151825;
+  border-radius: 50%;
+  border: 1px solid #1d9af2;
+  border-top: 2px solid #fff;
+  animation: spinner1 600ms linear infinite;
+}
+
+@keyframes spinner1 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.switcher {
+  position: relative;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.swt-itm {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  transition: transform 0.5s ease;
+}
+
+.container-body {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: white;
+}
+
+.hero-section {
+  width: 100%;
+  background: linear-gradient(121deg, #ad00ff 0%, #0c0056 100%), linear-gradient(121deg, #fa00ff 0%, rgba(0, 255, 71, 0) 100%), linear-gradient(127deg, #00f0ff 0%, #a80000 100%), radial-gradient(107% 142% at 15% 104%, #f3d0fc 0%, #1700a4 100%), radial-gradient(100% 100% at 50% 0%, #7300a9 0%, #00ffe0 100%), radial-gradient(100% 100% at 50% 0%, #7300a9 0%, #00ffe0 100%), linear-gradient(127deg, #b7d500 0%, #2200aa 100%);
+  background-blend-mode: overlay, color, overlay, difference, color-dodge, difference, normal;
+  border-radius: 0 0 25px 25px;
+}
+
+.hero-closed {
+  height: 80vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 30px;
+}
+
+.gif-section {
+  width: 200px;
+  margin: auto;
+  height: 50%;
+}
+
+.gif-section img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.texts-terms p {
+  font-size: 13px;
+  margin-bottom: 30px;
+}
+
+.input-capture {
+  display: none;
+}
+
+.capture-itm {
+  border: 1px solid;
+  width: 250px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  font-size: 13px;
+}
+
+.capture-itm i {
+  position: absolute;
+  left: 8px;
+}
+
+.hero-open {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 28vh;
+  font-size: 30px;
+}
+
+.foot-section {
+  height: 60vh;
+  font-size: 13px;
+}
+
+.footer-open {
+  height: 60vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-closed {
+  background-color: black;
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 60px;
+}
+
+.footer-closed * {
+  text-decoration: none;
+  list-style: none;
+  color: #1031ea;
+}
+
+.steps-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2px 8px;
+}
+
+.box {
+  width: 45%;
+  height: 100px;
+  border: 1px solid;
+}
+
+.link-dashboard {
+  width: 300px;
+  text-align: center;
+  background-color: #1031ea;
+}
+
+.nav-foot {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-direction: row;
+}
+
+input,
+input:focus,
+textarea {
+  outline: none;
+}
+
+.uploader-body {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-el {
+  width: 350px;
+  margin: 10px auto;
+  padding: 15px 10px;
+  height: 95vh;
+  overflow-y: scroll;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+.form-group input,
+.form-group textarea {
+  padding: 6px 15px;
+}
+.form-group label {
+  margin-bottom: 3px;
+}
+
+.label-el,
+.addded-labels {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.multi-input {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 6px;
+  justify-content: flex-start;
+  position: relative;
+  min-height: 50px;
+}
+.multi-input .fa-plus {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  cursor: pointer;
+}
+.multi-input .newinput {
+  width: 100px;
+  border-radius: 0px;
+  padding: 4px 2px;
+}
+.multi-input .remove-el {
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.multi-input select {
+  padding: 6px 2px;
+  margin-bottom: 4px;
+}
+
+.totals_added {
+  font-size: 13px;
+}
+
+.top-form-indicate {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.active-input {
+  background-color: #d9d9d9;
+}
+
+.upload-btn {
+  padding: 5px 15px;
+}
+
+.label-el {
+  font-size: 12px;
+}
+
+.hide {
+  display: none;
+}
+
+.crv {
+  border-radius: 15px;
+  padding: 3px 5px;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.indicate-section {
+  padding: 5px;
+}
+
+button {
+  font-family: inherit;
+  font-size: 13px;
+  background: royalblue;
+  color: white;
+  padding: 0.2em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+button span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+button svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+button:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+button:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+button:hover span {
+  transform: translateX(5em);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+  to {
+    transform: translateY(-0.1em);
+  }
+}/*# sourceMappingURL=style.css.map */
