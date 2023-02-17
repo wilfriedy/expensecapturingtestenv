@@ -48,6 +48,7 @@ let cost_array = []; // get each cost upon every line
 let items_array = []; // get item names
 let prop_all = 0;
 let total_cost;
+let selectElment;
 const isEmpty = (el) => {
   return el.value == "" ? true : false;
 };
@@ -59,14 +60,21 @@ const sum_total_currency = (arr) => {
   }
   return currencyFormat.format(total);
 };
+const disableInputHandler = (...fields) => {
+  fields.forEach((field) => {
+    // if (field.nodeName == "SELECT") {
+    field.style.pointerEvents = "none";
+    // }
+  });
+};
 
 const addHeaders = (e) => {
   let sibling = e.target.nextElementSibling;
   randomInputName = userCode + SelectRandomChars(chars, 6);
   let inputTemplate = `
-<div class="form-group">
+<div class="form-group" id="newFields">
    <label for="" class="label-el">Header type</label>
-   <select name="${randomInputName} form-data-el" class="edgedbtn">
+   <select name="${randomInputName}" class="edgedbtn">
               <option value=""></option>
               <option value="Value">Value</option>
    </select>
@@ -75,12 +83,18 @@ const addHeaders = (e) => {
   if (!noEmptyImputs) {
     let cost = addedSelection.querySelector(".cost");
     let item_name = addedSelection.querySelector(".itm_name");
+    // console.log(selectElment);
     if (isEmpty(cost) && isEmpty(item_name)) {
       return; // do not add line if not filled
     } else {
-      cost.disabled = true;
-      item_name.disabled = true;
+      // cost.disabled = true;
+      // item_name.disabled = true;
+      // cost.style.pointerEvents = "none";
+      // cost.addEventListener("keypress", (e) => e.preventDefault());
+      // selectElment.addEventListener("change", (e) => console.log(e));
+      disableInputHandler(cost, selectElment, item_name);
       noEmptyImputs = true;
+
       cost_array.push(cost);
       // items_array.push(item_name.value);
       total_cost = sum_total_currency(cost_array);
@@ -89,8 +103,6 @@ const addHeaders = (e) => {
   }
   //  lines can only be added when the current selection has details and also its inuts
   if (addLine && noEmptyImputs) {
-    console.log(cost_array);
-    console.log(items_array);
     sibling
       ? sibling.insertAdjacentHTML("afterend", inputTemplate)
       : multiSelect.insertAdjacentHTML("afterbegin", inputTemplate);
@@ -117,12 +129,12 @@ const selectionHandler = (e) => {
   <div class='template-el'>
   <div class='details-els'>
   <label class="addded-labels">Item name</label>
-  <input type="text" class="newinput itm_name form-data-el" name="${randomInputName}">
+  <input type="text" class="newinput itm_name" name="${randomInputName}">
   </div>
   <br>
   <div class='details-els'>
     <label class="addded-labels">Cost</label>
-    <input type="number" class="newinput cost form-data-el" name="${randomInputName}">
+    <input type="number" class="newinput cost" name="${randomInputName}">
   </div>
 
   <a href="#" class="remove-el">remove</a>
@@ -136,6 +148,7 @@ const selectionHandler = (e) => {
         selected.insertAdjacentHTML("afterend", autoInput);
         addedSelection = currentSelection.nextElementSibling;
         noEmptyImputs = false;
+        selectElment = selected;
       }
     });
   }
@@ -159,9 +172,22 @@ addHeaderBtn.addEventListener("click", addHeaders);
 
 // ++++++++++ Form data and uploads handling ++++++
 let formEl = document.querySelector(".form-el");
+let mainInputs = document.querySelector(".form-data-el");
+
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();
+  let addedTabs = [...document.querySelectorAll("#newFields")];
+  console.log(addedTabs);
 
-  // let receipt_data = new FormData();
-  console.log();
+  let linesData = addedTabs.map((tabData) => {
+    console.log(tabData, "tabs");
+    if (tabData.childNodes.length == 7) {
+      console.log(tabData);
+      let selectField = tabData.querySelector("select").value;
+      let cost = tabData.querySelector(".cost").value;
+      let itemName = tabData.querySelector(".itm_name").value;
+      return { selectField, cost, itemName };
+    }
+  });
+  console.log(linesData.filter((line) => line));
 });
