@@ -13,8 +13,9 @@ let cam2 = document.querySelector(".cam2");
 let total_display = document.querySelector(".total_value");
 let addHeaderBtn = document.querySelector(".fa-plus");
 let multiSelect = document.querySelector(".multi-input");
+let previewImg = document.querySelector(".place-holders-img");
 // ++++++ what happens when the user tries to upload
-let count = -1;
+let count = 0;
 const openCamToform = (e) => {
   modalLoader.style.display = "flex";
   setTimeout(() => {
@@ -22,9 +23,17 @@ const openCamToform = (e) => {
     count--;
     slideNex(count);
   }, 400);
+  // process image to upload
+  const file = e.target.files[0];
+  const uploadablePath = URL.createObjectURL(file);
+  previewImg.src = uploadablePath;
 };
+
+// cam functions
 cam1.addEventListener("change", openCamToform);
 cam2.addEventListener("change", openCamToform);
+
+//
 let currencyFormat = new Intl.NumberFormat("en-UK", {
   style: "currency",
   currency: "NGN",
@@ -63,8 +72,8 @@ hero.addEventListener("touchend", (e) => {
   if (e.target.closest(".fa-solid")) {
   } else {
     if (swipePosEnd > swipePosStart) {
-      hero.style.height = "80vh";
-      foot.style.height = "20vh";
+      hero.style.height = "85vh";
+      foot.style.height = "15vh";
 
       hideShow(secondHalf, firstHalf);
       hideShow(thirdHalf, fourthHalf);
@@ -76,5 +85,3 @@ function hideShow(el1, el2) {
   el1.classList.add("hide");
   el2.classList.remove("hide");
 }
-
-// ++++++++++++++++++++++++++++++++++  next page add ++++++++++++++++++++

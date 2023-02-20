@@ -155,13 +155,12 @@ body {
 }
 
 .footer-closed {
-  background-color: black;
+  background-color: #000000;
   height: 10vh;
-  @include display-centered-center();
   padding: 5px 10px;
-  position: fixed;
+  position: relative;
   width: 100%;
-  bottom: 60px;
+  bottom: 0px;
 }
 .footer-closed * {
   text-decoration: none;
@@ -190,7 +189,15 @@ body {
 }
 .nav-foot {
   @include display-v-flex-centered-spaced();
+  width: 100%;
   flex-direction: row;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 20px;
+  font-weight: 800;
+  font-size: 16px;
+  color: white;
 }
 
 //👀👀👀👀 uploading form start👀👀👀👀✔
@@ -206,12 +213,17 @@ textarea {
   @include display-centered-center();
 }
 
+.form-div {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
 .form-el {
   width: 350px;
   margin: 05px auto;
   padding: 15px 10px;
-
-  height: 90vh;
+  height: 80vh;
   overflow-y: scroll;
   margin-bottom: 5px;
 }
