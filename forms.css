@@ -1,0 +1,48 @@
+.template-el {
+  width: 100%;
+  background-color: white;
+  position: relative;
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+
+.remove-el {
+  color: red;
+  position: absolute;
+  right: 8px;
+  top: 0.5px;
+}
+
+.newinput {
+  width: 70px;
+}
+
+.img-prev {
+  width: 100%;
+  height: 10vh;
+  margin-bottom: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.place-holders {
+  border: 1px solid;
+  width: 50px;
+  height: 50px;
+  margin: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-new-btn {
+  border: 1px solid;
+  width: 50px;
+  height: 50px;
+  margin: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=forms.css.map */

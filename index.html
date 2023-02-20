@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/brands.css" />
     <link rel="stylesheet" href="/css/solid.css" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./forms.css" />
     <title>Capture</title>
   </head>
   <body>
@@ -160,20 +161,26 @@
             </button>
           </form>
           <div class="img-prev">
-            <div class="place-holders"></div>
-            <div class="place-holders"></div>
+            <div class="place-holders"><img src="" alt="" /></div>
+            <div class="place-holders-add">
+              <label class="add-new">
+                <div class="add-new-btn">
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                <input
+                  type="file"
+                  name=""
+                  id="captureImg"
+                  capture="environment"
+                  accept="image/"
+                  class="input-capture cam2"
+                />
+              </label>
+            </div>
           </div>
         </div>
       </div>
-      <!-- 
-        feaure to implement ( multi upload img)
-        add and previw
-      <div class="add-images-preview-block">
-
-      </div> -->
-      <br />
-      <br />
-      <br />
+      <!-- Image preview -->
     </div>
     <script src="./js/app.js"></script>
     <script src="./js/formhandler.js"></script>

@@ -50,8 +50,9 @@ let prop_all = 0;
 let total_cost;
 let selectElment;
 const isEmpty = (el) => {
-  return el.value == "" ? true : false;
-};
+  let newVal = el.value.trim();
+  return newVal.length < 1 ? true : false;
+}; // for empty lines
 
 const sum_total_currency = (arr) => {
   let total = 0;
@@ -59,7 +60,7 @@ const sum_total_currency = (arr) => {
     total += +arr[i].value;
   }
   return currencyFormat.format(total);
-};
+}; // this function runs anytime a line is added or removed to calculate the total sum of the
 const disableInputHandler = (...fields) => {
   fields.forEach((field) => {
     // if (field.nodeName == "SELECT") {
@@ -79,29 +80,22 @@ const addHeaders = (e) => {
               <option value="Value">Value</option>
    </select>
 </div>`;
-  // the if statement bellow is used for checking if the current selection has its details i.e the cost and item name fields filled
+  /* the if statement bellow is used for checking if the current selection has its details i.e the cost and item name fields filled
+   */
   if (!noEmptyImputs) {
     let cost = addedSelection.querySelector(".cost");
     let item_name = addedSelection.querySelector(".itm_name");
-    // console.log(selectElment);
-    if (isEmpty(cost) && isEmpty(item_name)) {
+    if (isEmpty(cost) || isEmpty(item_name)) {
       return; // do not add line if not filled
     } else {
-      // cost.disabled = true;
-      // item_name.disabled = true;
-      // cost.style.pointerEvents = "none";
-      // cost.addEventListener("keypress", (e) => e.preventDefault());
-      // selectElment.addEventListener("change", (e) => console.log(e));
       disableInputHandler(cost, selectElment, item_name);
       noEmptyImputs = true;
-
       cost_array.push(cost);
-      // items_array.push(item_name.value);
       total_cost = sum_total_currency(cost_array);
       total_display.innerText = total_cost;
     }
   }
-  //  lines can only be added when the current selection has details and also its inuts
+  //  lines can only be added when the current selection has details and also its inputs
   if (addLine && noEmptyImputs) {
     sibling
       ? sibling.insertAdjacentHTML("afterend", inputTemplate)
@@ -127,17 +121,16 @@ const selectionHandler = (e) => {
   let selected = e.target;
   let autoInput = `
   <div class='template-el'>
-  <div class='details-els'>
-  <label class="addded-labels">Item name</label>
-  <input type="text" class="newinput itm_name" name="${randomInputName}">
-  </div>
-  <br>
-  <div class='details-els'>
-    <label class="addded-labels">Cost</label>
-    <input type="number" class="newinput cost" name="${randomInputName}">
-  </div>
-
-  <a href="#" class="remove-el">remove</a>
+    <div class='details-els'>
+    <label class="addded-labels">Item :</label>
+    <input type="text" class="newinput itm_name" name="${randomInputName}">
+    </div>
+    <br>
+    <div class='details-els'>
+      <label class="addded-labels">Cost :</label>
+      <input type="number" class="newinput cost" name="${randomInputName}">
+    </div>
+    <a href="#" class="remove-el">X</a>
   </div>`;
   if (e.target.matches("select")) {
     selected.addEventListener("change", (e) => {
@@ -161,8 +154,6 @@ const selectionHandler = (e) => {
     total_cost = sum_total_currency(cost_array);
     total_display.innerText = total_cost;
   }
-
-  // if input then disablef
 };
 
 // check if the user added a selection and check for the value of the inputs elements within the selection
@@ -177,12 +168,9 @@ let mainInputs = document.querySelector(".form-data-el");
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();
   let addedTabs = [...document.querySelectorAll("#newFields")];
-  console.log(addedTabs);
 
   let linesData = addedTabs.map((tabData) => {
-    console.log(tabData, "tabs");
     if (tabData.childNodes.length == 7) {
-      console.log(tabData);
       let selectField = tabData.querySelector("select").value;
       let cost = tabData.querySelector(".cost").value;
       let itemName = tabData.querySelector(".itm_name").value;
