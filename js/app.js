@@ -14,8 +14,15 @@ let total_display = document.querySelector(".total_value");
 let addHeaderBtn = document.querySelector(".fa-plus");
 let multiSelect = document.querySelector(".multi-input");
 let previewImg = document.querySelector(".place-holders-img");
+let imgPrevBox = document.querySelector(".img-prev");
 // ++++++ what happens when the user tries to upload
 let count = 0;
+let uploadableArr = [];
+function getImageUploadablePath(filetype) {
+  const file = filetype.target.files[0];
+  const uploadablePath = URL.createObjectURL(file);
+  return uploadablePath;
+}
 const openCamToform = (e) => {
   modalLoader.style.display = "flex";
   setTimeout(() => {
@@ -24,10 +31,25 @@ const openCamToform = (e) => {
     slideNex(count);
   }, 400);
   // process image to upload
-  const file = e.target.files[0];
-  const uploadablePath = URL.createObjectURL(file);
-  previewImg.src = uploadablePath;
+  let uploadablePath1 = getImageUploadablePath(e);
+  uploadableArr.push(uploadablePath1);
+  previewImg.src = uploadablePath1;
 };
+
+// allow users to add more images
+let addNewImg = document.querySelector(".add-new");
+const limit = 2;
+addNewImg.addEventListener("change", (e) => {
+  // new image template
+  if (uploadableArr.length == limit) return;
+  let uploadablePath2 = getImageUploadablePath(e);
+  let newImgPrevTem = ` <div class="place-holders">
+              <img class="place-holders-img" src="${uploadablePath2}" alt="" />
+            </div>`;
+  uploadableArr.push(uploadablePath2);
+  imgPrevBox.insertAdjacentHTML("afterbegin", newImgPrevTem);
+  console.log("fd");
+});
 
 // cam functions
 cam1.addEventListener("change", openCamToform);
